@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Nature</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!--css file link-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+<!-- header section starts  -->
+
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-4"> <a href="index.html" class="homelogo"><i class="fas fa-seedling fa-spin fa-3x"></i>save
+                nature</a>
+        </div>
+        <div class="col-8">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+               
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="services.html">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="project.html">Project</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="event.html">Event</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="post.html">Post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="donate.html">Donate</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+<!-- header section ends -->
+
+
+<!-- donate section starts  -->
+
+<section class="donate" id="donate">
+
+    <h1 class="heading"> <i class="fas fa-quote-left"></i> Donate us <i class="fas fa-quote-right"></i> </h1>
+<!-- 
+    <div class="video-container">
+        <video src="images/video.mp4" loop autoplay muted></video>
+    </div> -->
+  
+</section>
+
+<section>
+    <div style="display: flex; flex-direction: column;justify-content: center; align-items: center;">
+
+        <form action="" class="form-container">
+
+                <input type="text" placeholder="first name" id="input1" class="donate-input">
+                <input type="text" placeholder="last name" id="input2" class="donate-input">
+           
+
+           
+                <input type="email" placeholder="enter your email" id="input3" class="donate-input"pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"title="Must contain @ and valid email address">
+                <select name="" id="input4" class="donate-input">
+                    <option value="" selected disabled>donation amount</option>
+                    <option value="100/=">100/=</option>
+                    <option value="50/=">50/=</option>
+                    <option value="30/=">30/=</option>
+                    <option value="20/=">20/=</option>
+                </select>
+         
+
+            <textarea name="" id="input5" cols="60" rows="10" placeholder="message ( optional )"></textarea>
+           
+
+
+
+        </form>
+        <button class="submit-button" style="width: 10%;margin-top: 20px;" onclick="getInputValue()" type="submit"> 
+            <a href="http://dummypay.publicdemo.xyz/">Submit</a></button>
+>
+    </div>
+</section>
+
+<script>
+    
+    function getInputValue() {
+        let inputFirstName = document.getElementById("input1").value;
+    let inputLastName= document.getElementById("input2").value;
+    let inputEmail= document.getElementById("input3").value;
+    let inputAmount= document.getElementById("input4").value;
+    let inputMsg= document.getElementById("input5").value;
+      let input={name:inputFirstName+" "+inputLastName, email:inputEmail,donation_amount:inputAmount,message:inputMsg} 
+      console.log(input)
+      fetch('https://restoreecobackend-production.up.railway.app/donators', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(input)
+})
+   .then(response => response.json())
+   .then(response => console.log(JSON.stringify(response)))
+    }
+  </script>
+
+</body>
+</html>
+
+<!-- donate section ends -->
